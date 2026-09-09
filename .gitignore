@@ -1,0 +1,117 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# uv
+.uv/
+
+# ===== Testing / Coverage =====
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+.nox/
+
+# ===== Linting / Type checking =====
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ty_cache/
+
+# ===== Security =====
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+secrets/
+
+# ===== IDE / Editors =====
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code (user-specific; keep workspace settings if intentional)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Vim / Emacs / others
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
+.DS_Store
+Thumbs.db
+
+# ===== Claude Code / MCP tooling =====
+.claude/settings.local.json
+.claude/logs/
+.claude/history/
+.mcp.json
+
+# ===== Serena =====
+.serena/cache/
+.serena/logs/
+# keep .serena/memories/ and .serena/project.yml under version control
+
+# ===== Hybris test artifacts =====
+hybris/
+platform/
+config/local.properties
+.cache/hybris-cp/
+
+# ===== Project-specific temp =====
+tmp/
+*.log
+*.pid
+
+# ===== hatch-vcs =====
+src/hydev/_version.py

@@ -1,0 +1,105 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hybris-developer-mcp"
+description = "MCP server providing semantic tools for Hybris/SAP Commerce development"
+requires-python = ">=3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+dependencies = [
+    "fastmcp>=4.0.3",
+]
+authors = [
+    { name = "Roman Shopin", email = "shopin.roman@gmail.com" }
+]
+keywords = ["mcp", "hybris", "sap-commerce", "lsp", "jdtls"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/devromans/hybris-developer-mcp"
+Repository = "https://github.com/devromans/hybris-developer-mcp"
+Issues = "https://github.com/devromans/hybris-developer-mcp/issues"
+
+[project.scripts]
+hydev-mcp = "hydev.server:main"
+
+[dependency-groups]
+dev = [
+    "pip-audit>=2.10.1",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.6",
+    "ty>=0.0.79",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W", # pycodestyle + pyflakes
+    "I", # isort
+    "N", # naming
+    "UP", # pyupgrade
+    "B", # bugbear (frequent bugs)
+    "SIM", # simplifications
+    "RUF", # ruff-specific
+    "S", # bandit (security)
+    "TC", # type-checking imports
+    "PTH", # use pathlib
+    "PL", # pylint subset
+]
+ignore = ["S101"]  # allow assert in tests
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "PLR2004"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --strict-config --cov=hydev --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "\\.\\.\\.", # protocols with ellipsis
+]
+
+# ===== Hatch build config =====
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/hydev/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hydev"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml",
+]
